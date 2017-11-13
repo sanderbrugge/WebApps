@@ -1,0 +1,23 @@
+<div class="main-layout">
+  <div class="nav-search">
+    <div class="ui secondary pointing menu">
+      <div class="ui centered container">
+          <div class="ui inverted icon input">
+              <i class="search icon"></i>
+              <input type="text" placeholder="Search">
+            </div>
+        <div class="right item right floated">
+          <span>
+          <button class="ui button">Log in</button>
+        </span>
+        <span>
+          <button class="ui button">Sign up</button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui container cards-list">
+    <app-video-card [videos]="videos"></app-video-card>
+  </div>
+</div>

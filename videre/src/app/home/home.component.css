@@ -1,0 +1,16 @@
+.nav-search{
+    background: #ffffff;
+}
+
+.main-layout{
+    background: #EEEEEE;
+}
+
+.cards-list{
+    padding-top: 20px;
+}
+
+.right-align {
+    position: absolute;
+    right: 0px;
+}

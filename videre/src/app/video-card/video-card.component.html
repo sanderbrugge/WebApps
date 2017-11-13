@@ -1,0 +1,26 @@
+<!--BASED ON THE CARD EXAMPLE PROVIDED BY SEMANTIC UI: https://semantic-ui.com/views/card.html-->
+<div class="ui link cards centered">
+  <div class="card" *ngFor="let video of videos">
+      <div class="image">
+        <img src={{video.thumbnail}}>
+          </div>
+            <div class="content">
+              <div class="header">
+                {{video.title}}
+              </div>
+              <div class="meta">
+                <a *ngFor="let tag of video.tags">{{tag.name}}</a>
+            </div>
+          </div>
+          <div class="extra content">
+          <span class="right floated">
+            <i class="empty heart icon"></i>
+            {{video.likes}}
+          </span>
+          <span>
+            <i class="unhide icon"></i>
+            {{video.views}}
+        </span>
+      </div>
+  </div>
+</div>
