@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { VideoCardComponent } from './video-card/video-card.component';
+import { VideoDetailComponent } from './video-detail/video-detail.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { VideoCardComponent } from './video-card/video-card.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    VideoCardComponent
+    VideoCardComponent,
+    VideoDetailComponent
   ],
   imports: [
     BrowserModule
