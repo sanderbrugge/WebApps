@@ -4,30 +4,40 @@
 <!--BASED ON SEMANTIC UI'S COMMENT EXAMPLE: https://semantic-ui.com/views/comment.html-->
 <div class="ui comments">
   <h3 class="ui dividing header">Comments</h3>
-  <div class="comment">
-    <a class="avatar">
-      <img src="/images/avatar/small/matt.jpg">
-    </a>
+  <div class="comment" *ngFor="let comment of _video.comments">
     <div class="content">
-      <a class="author">Matt</a>
+      <a class="author">{{comment.user}}</a>
       <div class="metadata">
-        <span class="date">14/11/2017</span>
+        <span class="date">{{comment.date | date}}</span>
       </div>
       <div class="text">
-        Nice video!
+       {{comment.comment}}
       </div>
       <div class="actions">
         <a class="reply" (click)="onSelect()">Reply</a>
       </div>
     </div>
+    <div class="comments">
+      <div class="comment" *ngFor="let subcomment of comment._subcomments">
+        <div class="content">
+          <a class="author">{{subcomment.user}}</a>
+          <div class="metadata">
+            <span class="date">{{subcomment.date | date}}</span>
+          </div>
+          <div class="text">
+           {{subcomment.comment}}
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <form class="ui reply form">
+      <div class="field">
+        <textarea></textarea>
+      </div>
+      <div class="ui blue labeled submit icon button float right">
+        <i class="icon edit"></i> Add Reply
+      </div>
+    </form>
   </div>
-  <form class="ui reply form">
-    <div class="field">
-      <textarea></textarea>
-    </div>
-    <div class="ui blue labeled submit icon button float right">
-      <i class="icon edit"></i> Add Reply
-    </div>
-  </form>
-</div>
 </div>

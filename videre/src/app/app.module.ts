@@ -1,8 +1,8 @@
 import {RouterModule} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { VideoService } from './services/video.service';
 
+import { VideoService } from './services/video.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
@@ -32,4 +32,5 @@ import { VideoDetailComponent } from './video-detail/video-detail.component';
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

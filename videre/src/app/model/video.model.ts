@@ -1,4 +1,5 @@
 import { Tag } from './tag.model';
+import { Comment } from '../model/comments.model';
 
 //generated with typescript toolbox extension
 /*init by command ng generate class video model; in terminal */
@@ -14,7 +15,7 @@ export class Video {
 	private _tags: Tag[];
 	private _comments: Comment[];
 
-	constructor(id: number, views: number, title: string, likes: number, description: string, thumbnail: string, video: string, tags: Tag[], comments: Comment[]) {
+	constructor(id: number, views: number, title: string, likes: number, description: string, thumbnail: string, video: string, tags: Tag[], comments?: Comment[]) {
 		this._id = id;
 		this._views = views;
 		this._title = title;
