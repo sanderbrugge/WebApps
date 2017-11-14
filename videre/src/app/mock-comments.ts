@@ -11,7 +11,7 @@ export const COMMENTS1: Comment[] = [
 ]
 
 export const COMMENTS2: Comment[] = [
-    new Comment(3,"Jon Snow","I know nothing :(!",new Date()),
-    new Comment(3,"Dyre Wolf","Awoooo, I guess!",new Date(),subComments),
-    new Comment(3,"Bran Stark","I AM the three eyed raven! (repeat 10x and give creepy remarks to show off)",new Date())
+    new Comment(4,"Jon Snow","I know nothing :(!",new Date()),
+    new Comment(5,"Dyre Wolf","Awoooo, I guess!",new Date(),subComments),
+    new Comment(6,"Bran Stark","I AM the three eyed raven! (repeat 10x and give creepy remarks to show off)",new Date())
 ]

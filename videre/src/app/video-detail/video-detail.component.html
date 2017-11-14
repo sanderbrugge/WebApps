@@ -1,6 +1,24 @@
+<br>
 <div class="ui container centered">
-<iframe width="420" height="315" width="640" height="390" [src]="_safe_video"></iframe>
-
+<h1 class="ui horizontal divider header">{{_video.title}}</h1>
+<br>
+<div class="ui segment">
+  <!--response iFrame video embed: https://www.h3xed.com/web-development/how-to-make-a-responsive-100-width-youtube-iframe-embed-->
+  <div class="video-container">
+    <iframe [src]="_safe_video" frameborder="0" allowfullscreen class="video"></iframe>
+  </div>
+  <br>
+  <div>
+      <span class="likes">
+        <i class="empty heart icon like-icon"></i>
+        {{_video.likes | number:0}}
+      </span>
+      <span>
+        <i class="unhide icon"></i>
+        {{_video.views | number:0}}
+    </span>
+  </div>
+</div>
 <!--BASED ON SEMANTIC UI'S COMMENT EXAMPLE: https://semantic-ui.com/views/comment.html-->
 <div class="ui comments">
   <h3 class="ui dividing header">Comments</h3>
@@ -14,7 +32,7 @@
        {{comment.comment}}
       </div>
       <div class="actions">
-        <a class="reply" (click)="onSelect()">Reply</a>
+        <a class="reply" (click)="onSelect(comment)">Reply</a>
       </div>
     </div>
     <div class="comments">
@@ -41,3 +59,4 @@
     </form>
   </div>
 </div>
+<br>

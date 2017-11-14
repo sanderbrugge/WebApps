@@ -4,6 +4,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { Comment } from '../model/comments.model';
 
 @Component({
   selector: 'app-video-detail',
@@ -39,7 +40,7 @@ export class VideoDetailComponent implements OnInit {
     console.log("videol: " + this._video.title);
   }
 
-  onSelect(): void {
-    console.log("selecting")
+  onSelect(comment: Comment): void {
+    console.log("selecting comment: " + comment.id);
   }
 }
