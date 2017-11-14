@@ -4,7 +4,6 @@ import { Tag } from '../model/tag.model';
 import { VideoService } from '../services/video.service';
 
 @Component({
-  selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   encapsulation: ViewEncapsulation.None
@@ -16,7 +15,7 @@ export class HomeComponent implements OnInit {
   inject the videoservice in this constructor which calls the singleton instance and creates
   a property
   */
-  constructor(private videoService: VideoService) {}
+  constructor(private _videoService: VideoService) {}
 
   //don't do this in the constructor but let angular deal with it after the construction of this class
   //this hooks it onto the lifecycle, use the constructor for simple inits
@@ -25,6 +24,6 @@ export class HomeComponent implements OnInit {
   }
 
   getVideos(): void {
-    this.videoService.getVideos().subscribe(videos => this.videos = videos);
+    this._videoService.getVideos().subscribe(videos => this.videos = videos);
   }
 }

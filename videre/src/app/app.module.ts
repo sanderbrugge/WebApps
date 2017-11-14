@@ -1,11 +1,13 @@
+import {RouterModule} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { VideoService } from './services/video.service';
 
+import { VideoService } from './services/video.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { VideoCardComponent } from './video-card/video-card.component';
+import { VideoDetailComponent } from './video-detail/video-detail.component';
 
 
 @NgModule({
@@ -13,14 +15,22 @@ import { VideoCardComponent } from './video-card/video-card.component';
     AppComponent,
     LoginComponent,
     HomeComponent,
-    VideoCardComponent
+    VideoCardComponent,
+    VideoDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      {path: 'home', component: HomeComponent},
+      {path: 'video/:id', component: VideoDetailComponent}
+      {path: '', component: HomeComponent},
+      {path: '**', component: HomeComponent}
+    ])
   ],
   providers: [
     VideoService
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
