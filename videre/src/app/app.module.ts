@@ -1,3 +1,4 @@
+import {RouterModule} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { VideoService } from './services/video.service';
@@ -18,7 +19,13 @@ import { VideoDetailComponent } from './video-detail/video-detail.component';
     VideoDetailComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot([
+      {path: 'home', component: HomeComponent},
+      {path: 'video/:id', component: VideoDetailComponent}
+      {path: '', component: HomeComponent},
+      {path: '**', component: HomeComponent}
+    ])
   ],
   providers: [
     VideoService

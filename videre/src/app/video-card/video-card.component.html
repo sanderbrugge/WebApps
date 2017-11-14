@@ -1,6 +1,7 @@
 <!--BASED ON THE CARD EXAMPLE PROVIDED BY SEMANTIC UI: https://semantic-ui.com/views/card.html-->
 <div class="ui link cards centered">
-  <div class="card" *ngFor="let video of videos">
+  <!--loop over every video in videos and make a new card-div, clicking on this div redirects to /video/:id-->
+  <div class="card" *ngFor="let video of videos" [routerLink]="['/video', video.id]">
       <div class="image">
         <img src={{video.thumbnail}}>
           </div>
@@ -9,17 +10,17 @@
                 {{video.title}}
               </div>
               <div class="meta">
-                <a *ngFor="let tag of video.tags">{{tag.name}}</a>
+                <a *ngFor="let tag of video.tags">{{tag.name | lowercase}}</a>
             </div>
           </div>
           <div class="extra content">
           <span class="right floated">
             <i class="empty heart icon like-icon"></i>
-            {{video.likes}}
+            {{video.likes | number:0}}
           </span>
           <span>
             <i class="unhide icon"></i>
-            {{video.views}}
+            {{video.views | number:0}}
         </span>
       </div>
   </div>

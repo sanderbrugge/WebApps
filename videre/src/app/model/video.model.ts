@@ -11,17 +11,19 @@ export class Video {
     private _thumbnail: string;
     private _video: string;
     //init as seperate class just in case tag should hold more data than just a name, string would suffice for now
-    private _tags: Tag[];
+	private _tags: Tag[];
+	private _comments: Comment[];
 
-	constructor(id: number, views: number, title: string, likes: number, description: string, thumbnail: string, video: string, tags: Tag[]) {
+	constructor(id: number, views: number, title: string, likes: number, description: string, thumbnail: string, video: string, tags: Tag[], comments: Comment[]) {
 		this._id = id;
 		this._views = views;
-		this._title = title
-		this._likes = likes
-		this._description = description
-		this._thumbnail = thumbnail
-		this._video = video
-		this._tags = tags
+		this._title = title;
+		this._likes = likes;
+		this._description = description;
+		this._thumbnail = thumbnail;
+		this._video = video;
+		this._tags = tags;
+		this._comments = comments;
 	}
 
 	public get id(): number {
@@ -94,4 +96,13 @@ export class Video {
 	public set tags(value: Tag[]) {
 		this._tags = value;
 	}
+
+	public get comments(): Comment[] {
+		return this._comments;
+	}
+
+	public set comments(value: Comment[]) {
+		this._comments = value;
+	}
+	
 }

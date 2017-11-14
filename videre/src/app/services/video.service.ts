@@ -4,6 +4,7 @@ import { Video } from '../model/video.model';
 import { VIDEOS } from '../mock-videos';
 import { Observable } from 'rxjs/Rx';
 import { of } from 'rxjs/observable/of';
+import 'rxjs/add/operator/map'
 
 /*
 injectable has to stay as per the style guide; this class might have dependencies later on
