@@ -15,4 +15,8 @@ export class VideoCardComponent implements OnInit {
 
   ngOnInit() {
   }
+
+  updateLike(): void {
+    console.log("liking");
+  }
 }

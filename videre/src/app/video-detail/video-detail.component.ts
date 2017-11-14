@@ -15,7 +15,8 @@ import { Comment } from '../model/comments.model';
 export class VideoDetailComponent implements OnInit {
   private _video: Video;
   private _safe_video: SafeResourceUrl;
-
+  private _display_reply = false;
+  private _display_reply_for_id: number;
   /**
    * 
    * @param _route 
@@ -42,5 +43,16 @@ export class VideoDetailComponent implements OnInit {
 
   onSelect(comment: Comment): void {
     console.log("selecting comment: " + comment.id);
+  }
+
+  updateLike(): void {
+    console.log("liking video: " + this._video.id);
+    this._video.likes += 1;
+  }
+
+  expandReply(id: number): void {
+    this._display_reply = !this._display_reply;
+    this._display_reply_for_id = id
+    console.log(this._display_reply);
   }
 }
