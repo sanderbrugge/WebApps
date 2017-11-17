@@ -2,6 +2,7 @@ import {RouterModule} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
 import { VideoService } from './services/video.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -22,7 +23,8 @@ import { VideoDetailComponent } from './video-detail/video-detail.component';
     BrowserModule,
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent},
-      {path: 'video/:id', component: VideoDetailComponent}
+      {path: 'video/:id', component: VideoDetailComponent},
+      {path: 'login', component: LoginComponent},
       {path: '', component: HomeComponent},
       {path: '**', component: HomeComponent}
     ])
