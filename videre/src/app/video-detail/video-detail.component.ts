@@ -40,8 +40,8 @@ export class VideoDetailComponent implements OnInit {
     //clean-up required this wont work when we'll be working asynchrounously
     this._safe_video = this._sanitizer.bypassSecurityTrustResourceUrl(this._video.video);
     this._replyForm = new FormGroup({
-      input: new FormControl('input')
-    })
+      input: new FormControl()
+    });
   }
 
   onSelect(comment: Comment): void {

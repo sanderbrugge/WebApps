@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +8,15 @@ import { FormGroup, FormControl } from '@angular/forms';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
-  private _loginFormgroup: FormGroup;
-  
-  constructor() { }
+  _loginFormgroup: FormGroup;
+
+  constructor(private _formBuilder: FormBuilder) { }
 
   ngOnInit() {
-    this._loginFormgroup = new FormGroup({
-      username: new FormControl(),
-      password: new FormControl()
-    })
+    this._loginFormgroup = this._formBuilder.group({
+      username: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required]
+    });
   }
 
   login() {
