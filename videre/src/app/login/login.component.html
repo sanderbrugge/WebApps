@@ -1,0 +1,45 @@
+<div class="ui stackable grid full-screen-grid">
+        <div class="eleven wide column computer only image-column">
+            <!--original image (tumblr): http://res.cloudinary.com/hrscywv4p/image/upload/c_limit,f_auto,h_900,q_80,w_1200/v1/242806/tumblr_inline_nfp2k6pjg81rkpkdu_gz9wqc.gif-->
+            <img src="../../assets/images/waves.gif" class="image-column"/>
+        </div> 
+        <!--BASED ON THE LOGIN EXAMPLE PROVIDED BY SEMANTIC UI: https://semantic-ui.com/examples/login.html-->
+        <div class="five wide column middle aligned">
+            <div class="ui center aligned login-form">
+                <h2 class="ui center aligned grid green icon header">
+                <i class="circular user circle outline green icon"></i>
+                Log in to your personal account!
+                </h2>
+                <form class="ui large form" [formGroup]='_loginFormgroup' (ngSubmit)='login()'>
+                <div class="ui stacked segment">
+                    <div class="field">
+                    <div class="ui left icon input">
+                        <i class="user icon"></i>
+                        <input type="text" name="email" placeholder="E-mail" formControlName='username'>
+                    </div>
+                    <!---->
+                    <div *ngIf='_loginFormgroup.get("username").errors?.required && _loginFormgroup.get("username").touched'
+                        class='ui pointing red basic label'>
+                        Username is required
+                    </div>
+                    </div>
+                    <div class="field">
+                    <div class="ui left icon input">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password" formControlName='password'>
+                    </div>
+                    <div *ngIf='_loginFormgroup.get("password").errors?.required && _loginFormgroup.get("password").touched'
+                        class='ui pointing red basic label'>
+                        Password is required
+                    </div>
+                    </div>
+                    <!--button is disabled while the form is invalid-->
+                    <button class="ui fluid large green button" type='submit' [disabled]="!_loginFormgroup.valid">Login</button>
+                </div>
+            
+                <div class="ui error message"></div>
+                </form>
+            </div>
+        </div>
+</div>
+        

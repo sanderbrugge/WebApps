@@ -1,2 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../semantic/dist/semantic.min.css';
+
+
+html, body {
+    min-height: 102%;
+    background: #EEEEEE;   
+}
