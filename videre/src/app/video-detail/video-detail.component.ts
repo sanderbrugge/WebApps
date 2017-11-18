@@ -5,6 +5,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Comment } from '../model/comments.model';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-video-detail',
@@ -17,6 +18,7 @@ export class VideoDetailComponent implements OnInit {
   private _safe_video: SafeResourceUrl;
   private _display_reply = false;
   private _display_reply_for_id: number;
+  private _replyForm: FormGroup;
   /**
    * 
    * @param _route 
@@ -37,8 +39,9 @@ export class VideoDetailComponent implements OnInit {
 
     //clean-up required this wont work when we'll be working asynchrounously
     this._safe_video = this._sanitizer.bypassSecurityTrustResourceUrl(this._video.video);
-    console.log("video: " + this._safe_video);
-    console.log("videol: " + this._video.title);
+    this._replyForm = new FormGroup({
+      input: new FormControl('input')
+    })
   }
 
   onSelect(comment: Comment): void {

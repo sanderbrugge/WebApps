@@ -1,24 +1,34 @@
-<div class="full-height">
-    <div class="centered-list">
-    <!--BASED ON THE LOGIN FORM PROVIDED BY SEMANTIC UI-->
-    <div class="ui container center aligned full-height">
-            <form class="ui large form center aligned page grid">
+<div class="ui stackable grid full-screen-grid">
+        <div class="eleven wide column computer only image-column">
+            <img src="../../assets/images/waves.gif" class="image-column"/>
+        </div> 
+        <!--BASED ON THE LOGIN EXAMPLE PROVIDED BY SEMANTIC UI: https://semantic-ui.com/examples/login.html-->
+        <div class="five wide column middle aligned">
+            <div class="ui center aligned login-form">
+                <h2 class="ui center aligned grid green icon header">
+                <i class="circular user circle outline green icon"></i>
+                Log in to your personal account!
+                </h2>
+                <form class="ui large form" [formGroup]='_loginFormgroup' (ngSubmit)='login()'>
                 <div class="ui stacked segment">
-                <div class="field">
+                    <div class="field">
                     <div class="ui left icon input">
-                    <i class="user icon"></i>
-                    <input type="text" name="email" placeholder="E-mail address">
+                        <i class="user icon"></i>
+                        <input type="text" name="email" placeholder="E-mail address" formControlName='username'>
                     </div>
-                </div>
-                <div class="field">
+                    </div>
+                    <div class="field">
                     <div class="ui left icon input">
-                    <i class="lock icon"></i>
-                    <input type="password" name="password" placeholder="Password">
+                        <i class="lock icon"></i>
+                        <input type="password" name="password" placeholder="Password" formControlName='password'>
                     </div>
+                    </div>
+                    <button class="ui fluid large green button" type='submit'>Login</button>
                 </div>
-                <div class="ui fluid large submit button">Login</div>
-                </div>
-            </form>
+            
+                <div class="ui error message"></div>
+                </form>
+            </div>
         </div>
-    </div>
 </div>
+        
