@@ -29,6 +29,7 @@ import { UploadFormComponent } from './upload-form/upload-form.component';
       {path: 'home', component: HomeComponent},
       {path: 'video/:id', component: VideoDetailComponent},
       {path: 'login', component: LoginComponent},
+      {path: 'upload', component: UploadFormComponent},
       {path: '', component: HomeComponent},
       {path: '**', component: HomeComponent}
     ])
