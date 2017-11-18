@@ -4,27 +4,37 @@
 <div class="ui clearing segment container centered">
   <br>
   <form class="ui form" [formGroup]='_uploadFormGroup' (ngSubmit)='upload()'>
-      <div class="field">
+      <div class="required field">
         <label>Title</label>
         <input type="text" name="title" placeholder="Title">
+        <p></p>
+        <div *ngIf='_uploadFormGroup.get("title").errors?.required && _uploadFormGroup.get("title").touched' class='ui red basic label'>
+          Title is required.
+        </div>
+        <div *ngIf='_uploadFormGroup.get("title").errors?.minLength && _uploadFormGroup.get("title").touched' class='ui red basic label'>
+            Min length is 5.
+        </div>
+        <div *ngIf='_uploadFormGroup.get("title").errors?.maxLength && _uploadFormGroup.get("title").touched' class='ui red basic label'>
+            Max length is 25.
+        </div>
       </div>
       <div class="field">
           <label>Description</label>
           <input type="text" name="description" placeholder="Description">
         </div>
-      <div class="field">
+      <div class="required field">
         <label>Youtube embed URL</label>
         <input type="text" name="youtube_link" placeholder="Youtube embed URL">
       </div>
       <div formArrayName='tags' *ngFor='let item of _uploadFormGroup.get("tags").controls; let i = index'>
           <div class="field" [formGroupName] = 'i'>
-              <label>Description</label>
-              <input type="text" name="description" placeholder="Description" formControlName='tag'>
+              <label>Tag</label>
+              <input type="text" name="tag" placeholder="Tag" formControlName='tag'>
             </div>
         </div>
       <p></p>
       <div class="right-align">
-        <button class="ui red button"><i class="cancel icon"></i>Cancel</button>
+        <button class="ui red button" [routerLink]="['/']"><i class="cancel icon"></i>Cancel</button>
         <button class="ui green button right align" type="submit"><i class="upload icon"></i>Upload</button>
       </div>
   </form>

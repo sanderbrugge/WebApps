@@ -17,7 +17,7 @@
                         <i class="user icon"></i>
                         <input type="text" name="email" placeholder="E-mail" formControlName='username'>
                     </div>
-                    <!---->
+                    <!--based on the example provided by the course-->
                     <div *ngIf='_loginFormgroup.get("username").errors?.required && _loginFormgroup.get("username").touched'
                         class='ui pointing red basic label'>
                         Username is required
