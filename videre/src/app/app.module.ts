@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { VideoDetailComponent } from './video-detail/video-detail.component';
+import { UploadFormComponent } from './upload-form/upload-form.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { VideoDetailComponent } from './video-detail/video-detail.component';
     LoginComponent,
     HomeComponent,
     VideoCardComponent,
-    VideoDetailComponent
+    VideoDetailComponent,
+    UploadFormComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { VideoDetailComponent } from './video-detail/video-detail.component';
       {path: 'home', component: HomeComponent},
       {path: 'video/:id', component: VideoDetailComponent},
       {path: 'login', component: LoginComponent},
+      {path: 'upload', component: UploadFormComponent},
       {path: '', component: HomeComponent},
       {path: '**', component: HomeComponent}
     ])
