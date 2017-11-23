@@ -3,28 +3,28 @@
 <br>
 <div class="ui clearing segment container centered">
   <br>
-  <form class="ui form" [formGroup]='_uploadFormGroup' (ngSubmit)='upload()'>
+  <form class="ui form segment error" [formGroup]='_uploadFormGroup' (ngSubmit)='upload()'>
       <div class="required field">
         <label>Title</label>
-        <input type="text" name="title" placeholder="Title">
+        <input type="text" name="title" placeholder="Title" formControlName='title'>
         <p></p>
-        <div *ngIf='_uploadFormGroup.get("title").errors?.required && _uploadFormGroup.get("title").touched' class='ui red basic label'>
+        <div *ngIf='_uploadFormGroup.get("title").errors?.required && _uploadFormGroup.get("title").touched' class='ui basic red pointing prompt label transition visible'>
           Title is required.
         </div>
-        <div *ngIf='_uploadFormGroup.get("title").errors?.minLength && _uploadFormGroup.get("title").touched' class='ui red basic label'>
+        <div *ngIf='_uploadFormGroup.get("title").errors?.minLength && _uploadFormGroup.get("title").touched' class='ui basic red pointing prompt label transition visible'>
             Min length is 5.
         </div>
-        <div *ngIf='_uploadFormGroup.get("title").errors?.maxLength && _uploadFormGroup.get("title").touched' class='ui red basic label'>
+        <div *ngIf='_uploadFormGroup.get("title").errors?.maxLength && _uploadFormGroup.get("title").touched' class='ui basic red pointing prompt label transition visible'>
             Max length is 25.
         </div>
       </div>
       <div class="field">
           <label>Description</label>
-          <input type="text" name="description" placeholder="Description">
+          <input type="text" name="description" placeholder="Description" formControlName='description'>
         </div>
       <div class="required field">
         <label>Youtube embed URL</label>
-        <input type="text" name="youtube_link" placeholder="Youtube embed URL">
+        <input type="text" name="youtube_link" placeholder="Youtube embed URL" formControlName='youtube_embed'>
       </div>
       <div formArrayName='tags' *ngFor='let item of _uploadFormGroup.get("tags").controls; let i = index'>
           <div class="field" [formGroupName] = 'i'>

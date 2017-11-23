@@ -17,6 +17,7 @@ export class VideoCardComponent implements OnInit {
   }
 
   updateLike(): void {
+    //this._videoService.updateLikesOf()
     console.log("liking");
   }
 }

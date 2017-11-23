@@ -45,13 +45,13 @@
       <div class="actions">
         <a class="reply" (click)="expandReply(comment.id)">Reply</a>
         <div *ngIf="_display_reply == true && comment.id == _display_reply_for_id">
-            <form class="ui reply form" [formGroup]='_replyForm'>
+            <form class="ui reply form" [formGroup]='_replyForm' (ngSubmit)='addSubcomment(comment)'>
                 <div class="field">
-                  <textarea formControlName='input'></textarea>
+                  <textarea formControlName='input'  formControlName='comment'></textarea>
                 </div>
-                <div class="ui blue labeled submit icon button">
+                <button class="ui blue labeled submit icon button" type='submit'>
                   <i class="icon edit"></i> Add Reply
-                </div>
+                </button>
               </form>
         </div>
       </div>
@@ -70,13 +70,13 @@
         </div>
       </div>
     </div>
-    <form class="ui reply form" [formGroup]='_replyForm'>
+    <form class="ui reply form" [formGroup]='_replyForm' (ngSubmit)='addComment()'>
       <div class="field">
-        <textarea formControlName='input'></textarea>
+        <textarea formControlName='input' formControlName='comment'></textarea>
       </div>
-      <div class="ui blue labeled submit icon button float right">
+      <button class="ui blue labeled submit icon button float right" type='submit'>
         <i class="icon edit"></i> Add Reply
-      </div>
+      </button>
     </form>
   </div>
 </div>

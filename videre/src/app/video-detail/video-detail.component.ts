@@ -19,6 +19,7 @@ export class VideoDetailComponent implements OnInit {
   private _display_reply = false;
   private _display_reply_for_id: number;
   private _replyForm: FormGroup;
+
   /**
    * 
    * @param _route 
@@ -40,7 +41,7 @@ export class VideoDetailComponent implements OnInit {
     //clean-up required this wont work when we'll be working asynchrounously
     this._safe_video = this._sanitizer.bypassSecurityTrustResourceUrl(this._video.video);
     this._replyForm = new FormGroup({
-      input: new FormControl()
+      comment: new FormControl()
     });
   }
 
@@ -56,6 +57,19 @@ export class VideoDetailComponent implements OnInit {
   expandReply(id: number): void {
     this._display_reply = !this._display_reply;
     this._display_reply_for_id = id
-    console.log(this._display_reply);
+  }
+
+  addComment(): void {
+    if(this._replyForm.valid) {
+      this._videoService.addCommentTo(this._video, new Comment(1,"Sander Brugge", this._replyForm.value.comment, new Date(), null));
+      this._replyForm.reset();
+    }
+  }
+
+  addSubcomment(comment: Comment) {
+    // i used to retrieve the comment by id. This however would result in low performance when there are many comments.
+    //let commentById = this._video.comments.filter(comment => comment.id == id);
+    console.log(comment)
+    comment.subcomments.push(new Comment(2,"Sander Brugge",this._replyForm.value.comment, new Date(), null));
   }
 }

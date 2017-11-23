@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Rx';
 import { of } from 'rxjs/observable/of';
 import 'rxjs/add/operator/map'
 
+import { Comment } from '../model/comments.model';
+
 /*
 injectable has to stay as per the style guide; this class might have dependencies later on
 this is necessary for dependency injection: https://angular.io/guide/dependency-injection
@@ -36,5 +38,13 @@ export class VideoService {
     .toPromise()
     .then(() => hero)
     .catch(this.handleError); */
+  }
+
+  public addCommentTo(video: Video, comment: Comment) {
+    video.comments.push(comment);
+  }
+
+  public uploadVideo(video: Video) {
+    VIDEOS.push(video);
   }
 }
