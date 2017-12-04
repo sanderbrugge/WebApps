@@ -27,11 +27,12 @@ export class UploadFormComponent implements OnInit {
   }
 
   addTag(): FormGroup {
-    return this._uploadFormBuilder.group({ name: ['', [Validators.minLength(3), Validators.maxLength(10)]] });
+    return this._uploadFormBuilder.group({ tag: ['', [Validators.minLength(3), Validators.maxLength(10)]] });
   }
 
   upload() {
     if(this._uploadFormGroup.valid) {
+      console.log("valid from");
       this._videoService.uploadVideo(
         new Video(
           1,
@@ -44,6 +45,8 @@ export class UploadFormComponent implements OnInit {
           this._uploadFormGroup.value.tag, 
           null
         ));
+    } else {
+      console.log("invalid form");
     }
   }
 }

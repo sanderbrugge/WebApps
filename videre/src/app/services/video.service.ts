@@ -16,7 +16,7 @@ Also add this to the providers array in app.module.ts!
 */
 @Injectable()
 export class VideoService {
-
+  private const _appUrl = 'http://localhost:4200/API/';
   constructor() { }
 
   public getVideos(): Observable<Video[]> {
@@ -45,6 +45,7 @@ export class VideoService {
   }
 
   public uploadVideo(video: Video) {
+    console.log("video: " + video.id + video.title + video.video);
     VIDEOS.push(video);
   }
 }

@@ -2,7 +2,7 @@ import {RouterModule} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
+import { HttpModule } from '@angular/http';
 
 import { VideoService } from './services/video.service';
 import { AppComponent } from './app.component';
@@ -24,6 +24,7 @@ import { UploadFormComponent } from './upload-form/upload-form.component';
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent},
