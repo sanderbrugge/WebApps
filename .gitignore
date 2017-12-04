@@ -1,2 +1,3 @@
 .DS_Store
 videre-backend/node_modules/*
+videre-backend/videre-env
