@@ -1,10 +1,11 @@
 var express = require('express');
+let jwt = require('express-jwt');
 var router = express.Router();
 
 let mongoose = require('mongoose');
 let Video = mongoose.model('Video');
 let Tag = mongoose.model('Tag');
-
+let auth = jwt({secret: process.env.VIDERE_SECRET, userProperty: 'payload'});
 
 /*GET LIST OF VIDEOS */
 router.get('/API/videos/', function(req, res, next) {
@@ -26,7 +27,7 @@ router.get('/API/tags/', function(req, res, next){
 
 
 /*POST VIDEO */
-router.post('/API/video/', function (req, res, next) {
+router.post('/API/video/', auth, function (req, res, next) {
   let video = new Video(req.body);
   video.save(function(err, rec) {
     if (err){ return next(err); }
@@ -40,7 +41,7 @@ router.post('/API/video/', function (req, res, next) {
  * 
  * Do multiple POST requests to add a tag to a video.
  */
-router.post('/API/video/:videoId/tags', function(req, res, next) {
+router.post('/API/video/:videoId/tags', auth, function(req, res, next) {
   let tag = new Tag(req.body);
 
   tag.save(function(err, tag) {
