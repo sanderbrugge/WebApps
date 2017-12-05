@@ -1,5 +1,6 @@
 /*Generated with ng generate service video */
 import { Injectable } from '@angular/core';
+import { Http, Response } from '@angular/http';
 import { Video } from '../model/video.model';
 import { VIDEOS } from '../mock-videos';
 import { Observable } from 'rxjs/Rx';
@@ -16,18 +17,45 @@ Also add this to the providers array in app.module.ts!
 */
 @Injectable()
 export class VideoService {
-  private const _appUrl = 'http://localhost:4200/API/';
+  private _baseUrl = 'http://localhost:4200/';
   
-  constructor() { }
-
-  public getVideos(): Observable<Video[]> {
-    return of(VIDEOS);
+  constructor(private http: Http) {
   }
 
-  public getVideo(id: number): Observable<Video> {
-    return this.getVideos()
-        .map(videos => videos
-        .find(video => video.id == id));
+  public getVideos(): Observable<Video[]> {
+    let videoURL = this._baseUrl + "API/videos";
+    return this.http.get(videoURL).map(response =>
+      response.json().map(json =>
+        new Video(
+          json._id,
+          json.views,
+          json.title,
+          json.likes,
+          json.description,
+          json.thumbnail,
+          json.video,
+          json.tags,
+          json.comments
+        )
+      )
+    );
+  }
+
+  public getVideo(id: string): Observable<Video> {
+    let videoById = this._baseUrl + "API/video/";
+    return this.http.get(`${videoById}/${id}`)
+      .map(response => response.json()).map(json => new Video(
+        json._id,
+        json.views,
+        json.title,
+        json.likes,
+        json.description,
+        json.thumbnail,
+        json.video,
+        json.tags,
+        json.comments
+      )
+    );
   }
 
   public updateLikesOf(video: Video): Video {
@@ -45,8 +73,21 @@ export class VideoService {
     video.comments.push(comment);
   }
 
-  public uploadVideo(video: Video) {
+  public uploadVideo(video: Video): Observable<Video> {
     console.log("video: " + video.id + video.title + video.video);
-    VIDEOS.push(video);
+    return this.http.post(this._baseUrl + "API/video/", video)
+    .map(res => res.json()).map(json =>
+      new Video(
+        json._id,
+        json.views,
+        json.title,
+        json.likes,
+        json.description,
+        json.thumbnail,
+        json.video,
+        json.tags,
+        json.comment
+      )
+    );
   }
 }

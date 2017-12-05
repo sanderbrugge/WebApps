@@ -25,6 +25,13 @@ router.get('/API/tags/', function(req, res, next){
   });
 });
 
+/**
+ * GET VIDEO by Id
+ */
+router.get('/API/video/:videoId', function(req, res, next) {
+  res.json(req.video);
+});
+
 
 /*POST VIDEO */
 router.post('/API/video/', auth, function (req, res, next) {
