@@ -106,4 +106,16 @@ export class Video {
 		this._comments = value;
 	}
 	
+	toJSON() {
+        return {
+			views: this._views,
+			title: this._title,
+			likes: this._likes,
+			description: this._description,
+			thumbnail: this._thumbnail,
+			video: this._video,
+			comments: this._comments,
+			tags: this._tags
+        };
+    }
 }

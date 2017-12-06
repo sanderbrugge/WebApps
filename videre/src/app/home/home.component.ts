@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
   }
 
   getVideos(): void {
+    console.log("HOMECOMPONENT: getVideos()")
     this._videoService.getVideos().subscribe(videos => this.videos = videos);
   }
 }

@@ -32,9 +32,7 @@ export class UploadFormComponent implements OnInit {
 
   upload() {
     if(this._uploadFormGroup.valid) {
-      console.log("valid from");
-      this._videoService.uploadVideo(
-        new Video(
+        let video = new Video(
           1,
           0,
           this._uploadFormGroup.value.title,
@@ -44,7 +42,9 @@ export class UploadFormComponent implements OnInit {
           this._uploadFormGroup.value.youtube_embed,
           this._uploadFormGroup.value.tag, 
           null
-        ));
+        )
+        
+        this._videoService.uploadVideo(video).subscribe();
     } else {
       console.log("invalid form");
     }

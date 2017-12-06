@@ -1,5 +1,6 @@
-var mongoose = require('mongoose');
-
+let mongoose = require('mongoose');
+let crypto = require('crypto');
+let jwt = require('jsonwebtoken');
 /**
  * as seen in the slides (auth)
  * a user needs a username which has to be unique!
@@ -34,6 +35,9 @@ UserSchema.methods.validPassword = function (password) {
 
 /**
  * JWT = jason web token, typically base64 encoded (because of localstorage)
+ * this token identifies a user securely
+ * 
+ * process.env.secret allows the user to securely register, login and generate a token
  */
 UserSchema.methods.generateJWT = function () {
     var today = new Date();

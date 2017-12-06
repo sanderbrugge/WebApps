@@ -34,15 +34,19 @@ export class VideoDetailComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this._route.paramMap.switchMap((params: ParamMap) => this._videoService.getVideo(+params.get('id')))
-        .subscribe(video => this._video = video);
+    this._route
+      .paramMap
+      .switchMap((params: ParamMap) => this._videoService.getVideo(params.get('id')))
+      .subscribe(video => this.initVideo(video));
 
-
-    //clean-up required this wont work when we'll be working asynchrounously
-    this._safe_video = this._sanitizer.bypassSecurityTrustResourceUrl(this._video.video);
     this._replyForm = new FormGroup({
       comment: new FormControl()
     });
+  }
+
+  initVideo(video: Video) {
+    this._video = video;
+    this._safe_video = this._sanitizer.bypassSecurityTrustResourceUrl(this._video.video);    
   }
 
   onSelect(comment: Comment): void {
