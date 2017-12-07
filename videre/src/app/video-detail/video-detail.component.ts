@@ -56,6 +56,7 @@ export class VideoDetailComponent implements OnInit {
   updateLike(): void {
     console.log("liking video: " + this._video.id);
     this._video.likes += 1;
+    this._videoService.updateLikesOf(this._video).subscribe(status => console.log(status));
   }
 
   expandReply(id: number): void {

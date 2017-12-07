@@ -1,3 +1,5 @@
+import {UserModule} from './user/user.module';
+import {RegisterComponent} from './user/register/register.component';
 import {RouterModule} from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -26,6 +28,7 @@ import { UploadFormComponent } from './upload-form/upload-form.component';
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
+    UserModule,
     RouterModule.forRoot([
       {path: 'home', component: HomeComponent},
       {path: 'video/:id', component: VideoDetailComponent},
