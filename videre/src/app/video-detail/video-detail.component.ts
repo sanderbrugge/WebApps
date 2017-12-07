@@ -42,11 +42,14 @@ export class VideoDetailComponent implements OnInit {
     this._replyForm = new FormGroup({
       comment: new FormControl()
     });
+
+
   }
 
   initVideo(video: Video) {
     this._video = video;
-    this._safe_video = this._sanitizer.bypassSecurityTrustResourceUrl(this._video.video);    
+    this._safe_video = this._sanitizer.bypassSecurityTrustResourceUrl(this._video.video);
+    this._videoService.updateViews(this._video).subscribe(status => console.log(status))    
   }
 
   onSelect(comment: Comment): void {

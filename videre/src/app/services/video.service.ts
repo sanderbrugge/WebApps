@@ -60,11 +60,25 @@ export class VideoService {
       )
     );
   }
-
-  public updateLikesOf(video: Video): Observable<string> {
-    return this.http.put(`${this._baseUrl}API/video/${video.id}`, video)
+/**
+ * 
+ * @param video the video that needs updating
+ * increment the likes off a vid by 1 on click
+ */
+public updateLikesOf(video: Video): Observable<string> {
+    return this.http.put(`${this._baseUrl}API/video/${video.id}/likes`, video)
       .map(res => res.statusText);
-  }
+}
+
+/**
+ * 
+ * @param video the video that needs updating
+ * increment the views off a vid by 1 on click
+ */
+public updateViews(video: Video): Observable<string> {
+  return this.http.put(`${this._baseUrl}API/video/${video.id}/views`, video)
+    .map(res => res.statusText);
+}
 
   public addCommentTo(video: Video, comment: Comment) {
     video.comments.push(comment);
