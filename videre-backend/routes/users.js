@@ -45,4 +45,18 @@ router.post('/API/login', function(req, res, next){
   })(req, res, next);
 });
 
+/**
+ * route for checking duplicate usernames, as seen on the slides.
+ */
+router.post('API/checkusername', function(req, res, next) {
+  User.find({username: req.body.username}, 
+    function(err, result) {
+      if (result.length) {
+        res.json({'username': 'alreadyexists'})
+      } else {
+        res.json({'username': 'ok'})
+      }
+  });
+});
+
 module.exports = router;

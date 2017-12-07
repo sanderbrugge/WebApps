@@ -43,6 +43,17 @@ router.post('/API/video/', auth, function (req, res, next) {
 });
 
 /**
+ * PUT increment likes for a video by id
+ */
+router.put('/API/video/:videoId', function(req, res, next){
+  let newLikes = req.video.likes +1;
+  let query = Video.findByIdAndUpdate(req.video._id,  { likes: +newLikes }, function(err, video) {
+    if (err) throw err;
+    res.send("succesfully updated: " + video._id);
+  });
+});
+
+/**
  * add a tag to the video
  * this is as seen in the slides on forms (slide 29)
  * 
@@ -65,7 +76,7 @@ router.post('/API/video/:videoId/tags', auth, function(req, res, next) {
 /**
  * ROUTER PARAMS
  * 
- * find the video by ID for the post method
+ * find the video by ID for the requested method, send the retrieved video on to the next call with 'next'
  */
 router.param('videoId', function(req, res, next, id) {
   let query = Video.findById(id);

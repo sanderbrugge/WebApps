@@ -30,6 +30,9 @@ export class UploadFormComponent implements OnInit {
     return this._uploadFormBuilder.group({ tag: ['', [Validators.minLength(3), Validators.maxLength(10)]] });
   }
 
+  /**
+   * retrieve the values from the form, and post them to the server via the service
+   */
   upload() {
     if(this._uploadFormGroup.valid) {
         let video = new Video(
