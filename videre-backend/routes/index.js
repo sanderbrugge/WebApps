@@ -45,9 +45,20 @@ router.post('/API/video/', auth, function (req, res, next) {
 /**
  * PUT increment likes for a video by id
  */
-router.put('/API/video/:videoId', function(req, res, next){
+router.put('/API/video/:videoId/likes', function(req, res, next){
   let newLikes = req.video.likes +1;
   let query = Video.findByIdAndUpdate(req.video._id,  { likes: +newLikes }, function(err, video) {
+    if (err) throw err;
+    res.send("succesfully updated: " + video._id);
+  });
+});
+
+/**
+ * PUT increment views for a video by id
+ */
+router.put('/API/video/:videoId/views', function(req, res, next){
+  let newViews = req.video.views +1;
+  let query = Video.findByIdAndUpdate(req.video._id,  { views: +newViews }, function(err, video) {
     if (err) throw err;
     res.send("succesfully updated: " + video._id);
   });

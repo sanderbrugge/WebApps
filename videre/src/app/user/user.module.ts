@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {HttpModule} from '@angular/http';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuardService } from './auth-guard.service';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { RegisterComponent } from './register/register.component';
     RegisterComponent
   ],
   providers: [
-    AuthenticationService
+    AuthenticationService,
+    AuthGuardService
   ]
 })
 export class UserModule { }
