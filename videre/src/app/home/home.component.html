@@ -11,7 +11,10 @@
           <button class="ui button" [routerLink]="['/login']">Log in</button>
         </span>
         <span>
-            <button class="ui button">Sign up</button>
+            <button class="ui button" [routerLink]="['/register']">Sign up</button>
+          </span>
+          <span>
+            <button class="ui button" (click)='logOut()'>Log out</button>
           </span>
           <div class="right item right floated">
           <span>

@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { VideoCardComponent } from './video-card/video-card.component';
 import { VideoDetailComponent } from './video-detail/video-detail.component';
 import { UploadFormComponent } from './upload-form/upload-form.component';
+import { AuthGuardService } from './user/auth-guard.service';
 
 
 @NgModule({
@@ -33,7 +34,7 @@ import { UploadFormComponent } from './upload-form/upload-form.component';
       {path: 'home', component: HomeComponent},
       {path: 'video/:id', component: VideoDetailComponent},
       {path: 'login', component: LoginComponent},
-      {path: 'upload', component: UploadFormComponent},
+      {path: 'upload', component: UploadFormComponent, canActivate: [AuthGuardService]},
       {path: '', component: HomeComponent},
       {path: '**', component: HomeComponent}
     ])

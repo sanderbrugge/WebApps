@@ -33,8 +33,12 @@ export class LoginComponent implements OnInit {
     console.log("logging in");
     this._authService.login(this._loginFormgroup.value.username, this._loginFormgroup.value.password).subscribe(val => {
       if (val) {
-        console.log(val);
-          this.router.navigate(['/home']);
+        if (this._authService.redirectUrl) {
+          this.router.navigateByUrl(this._authService.redirectUrl);
+          this._authService.redirectUrl = undefined;
+        } else {
+          this.router.navigate(['/recipe/list']);
+        }
       }
     }, err => this._error = err.json().message);
     console.log("error: " + this._error);

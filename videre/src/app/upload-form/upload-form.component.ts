@@ -2,6 +2,7 @@ import {Video} from '../model/video.model';
 import {VideoService} from '../services/video.service';
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-upload-form',
@@ -14,7 +15,8 @@ export class UploadFormComponent implements OnInit {
 
   constructor(
     private _uploadFormBuilder: FormBuilder, 
-    private _videoService: VideoService
+    private _videoService: VideoService,
+    private _router: Router
   ){}
 
   ngOnInit() {
@@ -26,6 +28,9 @@ export class UploadFormComponent implements OnInit {
     });
   }
 
+  /**
+   * custom build form array
+   */
   addTag(): FormGroup {
     return this._uploadFormBuilder.group({ tag: ['', [Validators.minLength(3), Validators.maxLength(10)]] });
   }
@@ -47,7 +52,7 @@ export class UploadFormComponent implements OnInit {
           null
         )
         
-        this._videoService.uploadVideo(video).subscribe();
+        this._videoService.uploadVideo(video).subscribe(video => this._router.navigate(['/home']));
     } else {
       console.log("invalid form");
     }
