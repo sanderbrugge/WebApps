@@ -5,6 +5,7 @@ var router = express.Router();
 let mongoose = require('mongoose');
 let Video = mongoose.model('Video');
 let Tag = mongoose.model('Tag');
+let comment = mongoose.model('Comment');
 let auth = jwt({secret: process.env.VIDERE_SECRET, userProperty: 'payload'});
 
 /*GET LIST OF VIDEOS */
@@ -43,13 +44,13 @@ router.post('/API/video/', auth, function (req, res, next) {
 });
 
 /**
- * PUT increment likes for a video by id
+ * PUT increment likes for a video by id, liking requires auth
  */
-router.put('/API/video/:videoId/likes', function(req, res, next){
+router.put('/API/video/:videoId/likes', auth, function(req, res, next){
   let newLikes = req.video.likes +1;
   let query = Video.findByIdAndUpdate(req.video._id,  { likes: +newLikes }, function(err, video) {
     if (err) throw err;
-    res.send("succesfully updated: " + video._id);
+    res.status(200).send("succesfully updated: " + video._id);
   });
 });
 
@@ -60,7 +61,7 @@ router.put('/API/video/:videoId/views', function(req, res, next){
   let newViews = req.video.views +1;
   let query = Video.findByIdAndUpdate(req.video._id,  { views: +newViews }, function(err, video) {
     if (err) throw err;
-    res.send("succesfully updated: " + video._id);
+    res.status(200).send("succesfully updated: " + video._id);
   });
 });
 
@@ -82,6 +83,20 @@ router.post('/API/video/:videoId/tags', auth, function(req, res, next) {
       res.json(tag);
     })
   });
+});
+
+router.post('/API/video/:videoId/comment', auth, function(req, res, next){
+  let comment = new Comment(req.body);
+  
+    comment.save(function(err, comment) {
+      if (err) return next(err);
+  
+      req.video.comments.push(comment);
+      req.video.save(function(err, rec) {
+        if (err) return next(err);
+        res.json(comment);
+      })
+    });
 });
 
 /**

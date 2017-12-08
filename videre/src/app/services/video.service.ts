@@ -65,9 +65,9 @@ export class VideoService {
  * @param video the video that needs updating
  * increment the likes off a vid by 1 on click
  */
-public updateLikesOf(video: Video): Observable<string> {
-    return this.http.put(`${this._baseUrl}API/video/${video.id}/likes`, video)
-      .map(res => res.statusText);
+public updateLikesOf(video: Video): Observable<number> {
+    return this.http.put(`${this._baseUrl}API/video/${video.id}/likes`, video, { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) })
+      .map(res => res.status);
 }
 
 /**
@@ -75,13 +75,23 @@ public updateLikesOf(video: Video): Observable<string> {
  * @param video the video that needs updating
  * increment the views off a vid by 1 on click
  */
-public updateViews(video: Video): Observable<string> {
+public updateViews(video: Video): Observable<number> {
   return this.http.put(`${this._baseUrl}API/video/${video.id}/views`, video)
-    .map(res => res.statusText);
+    .map(res => res.status);
 }
 
-  public addCommentTo(video: Video, comment: Comment) {
+  public addCommentTo(video: Video, comment: Comment): Observable<Comment> {
+    let newComment =  this.http.post(`${this._baseUrl}API/video/${video.id}/comment`, comment, { headers: new Headers({Authorization: `Bearer ${this.auth.token}`}) }).map(res => res.json()).map(json =>
+      new Comment(
+        json._id,
+        json.user,
+        json.comment,
+        json.subcomments,
+        json.date
+      )
+    );
     video.comments.push(comment);
+    return newComment;
   }
 
   /**

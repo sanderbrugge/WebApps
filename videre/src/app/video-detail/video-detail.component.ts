@@ -46,10 +46,15 @@ export class VideoDetailComponent implements OnInit {
 
   }
 
+  /**
+   * 
+   * @param video use this function when the video got retrieved to init the youtube url and update the view count
+   */
   initVideo(video: Video) {
     this._video = video;
     this._safe_video = this._sanitizer.bypassSecurityTrustResourceUrl(this._video.video);
-    this._videoService.updateViews(this._video).subscribe(status => console.log(status))    
+    this._videoService.updateViews(this._video).subscribe(status => console.log(status));    
+    this._video.views += 1;
   }
 
   onSelect(comment: Comment): void {
@@ -67,9 +72,13 @@ export class VideoDetailComponent implements OnInit {
     this._display_reply_for_id = id
   }
 
+  /**
+   * add a comment to a video
+   */
   addComment(): void {
     if(this._replyForm.valid) {
-      this._videoService.addCommentTo(this._video, new Comment(1,"Sander Brugge", this._replyForm.value.comment, new Date(), null));
+      this._videoService.addCommentTo(this._video, new Comment(1,"Sander Brugge", this._replyForm.value.comment, new Date(), null))
+        .subscribe(comment => console.log(comment));
       this._replyForm.reset();
     }
   }
