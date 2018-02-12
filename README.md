@@ -5,7 +5,7 @@ Github repository of a project to educate myself in the world of MEAN-stack. Thi
 
 This is sort of a youtube clone where users can view a public list of available videos, watch a specific video in a detail modal. If a user wishes to like, comment or upload a video of his own he has to login or register a new account.
 
-This app follows the best practices as described in the Angular guidelines and tought me the following:
+This app follows the best practices as described in the Angular guidelines and taught me the following:
 
 * Create a new Angular Web App,
 * Create a front end and style it with Semantic UI,
